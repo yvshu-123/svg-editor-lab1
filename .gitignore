@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+*.log
+.env
+.DS_Store
+
+# 导出的图不算源码
+*.svg
+!doc/**/*.svg
+!tests/fixtures/**/*.svg
