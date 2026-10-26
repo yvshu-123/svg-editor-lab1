@@ -10,6 +10,8 @@ import type { Shape } from './Shape.js';
 export class Document {
   width: number;
   height: number;
+  /** 上一次 read/save 用的路径，`save` 不带参数时用它。 */
+  sourcePath: string | null = null;
   readonly root: SvgRoot;
 
   private readonly index = new Map<string, Shape>();
@@ -92,6 +94,7 @@ export class Document {
   /** 整篇文档的深拷贝，撤销快照用。 */
   clone(): Document {
     const copy = new Document(this.width, this.height);
+    copy.sourcePath = this.sourcePath;
     for (const child of this.children) {
       copy.add(child.clone());
     }
@@ -102,6 +105,7 @@ export class Document {
   restoreFrom(snapshot: Document): void {
     this.width = snapshot.width;
     this.height = snapshot.height;
+    this.sourcePath = snapshot.sourcePath;
     this.clear();
     for (const child of snapshot.children) {
       this.add(child.clone());
