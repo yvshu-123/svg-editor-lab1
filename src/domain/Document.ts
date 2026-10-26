@@ -65,9 +65,59 @@ export class Document {
     return shape;
   }
 
+  /** 把已有节点连同子树挪到新容器下面（addto / ungroup / front / back 都靠它）。 */
+  moveTo(shape: Shape, parent: Group, index?: number): void {
+    if (!parent.acceptsChildren()) {
+      throw new AppError(`not a container: ${parent.id}`);
+    }
+    if (shape === parent || this.isAncestorOf(shape, parent)) {
+      throw new AppError(`cannot move a container into its own descendant: ${shape.id}`);
+    }
+    shape.parent?.detach(shape);
+    parent.insertAt(shape, index ?? parent.childCount);
+  }
+
   resize(width: number, height: number): void {
     this.width = width;
     this.height = height;
+  }
+
+  clear(): void {
+    for (const child of [...this.root.children]) {
+      this.root.detach(child);
+    }
+    this.index.clear();
+  }
+
+  /** 整篇文档的深拷贝，撤销快照用。 */
+  clone(): Document {
+    const copy = new Document(this.width, this.height);
+    for (const child of this.children) {
+      copy.add(child.clone());
+    }
+    return copy;
+  }
+
+  /** 用快照覆盖当前内容。会重新 clone 一遍，避免快照被后面的编辑改掉。 */
+  restoreFrom(snapshot: Document): void {
+    this.width = snapshot.width;
+    this.height = snapshot.height;
+    this.clear();
+    for (const child of snapshot.children) {
+      this.add(child.clone());
+    }
+  }
+
+  /** target 是不是在 ancestor 的子树里（含 target === ancestor）。 */
+  isAncestorOf(ancestor: Shape, target: Shape): boolean {
+    let node: Shape | null = target;
+    while (node !== null) {
+      if (node === ancestor) {
+        return true;
+      }
+      node = node.parent;
+    }
+    return false;
   }
 
   private collectIds(shape: Shape): void {
