@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="560" viewBox="0 0 860 560">
+  <rect width="860" height="560" fill="#ffffff"/>
+
+  <rect x="40" y="30" width="780" height="92" fill="#f4f6f8" stroke="#333333" stroke-width="1.2"/>
+  <text x="56" y="56" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="bold">cli</text>
+  <text x="56" y="80" font-family="Consolas, monospace" font-size="12.5">Repl · LineTokenizer · CommandRegistry · TreeFormatter · ShowFormatter · HelpText</text>
+  <text x="56" y="102" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12.5" fill="#555555">只管输入输出和格式化</text>
+
+  <rect x="40" y="160" width="780" height="150" fill="#f4f6f8" stroke="#333333" stroke-width="1.2"/>
+
+  <rect x="58" y="178" width="180" height="116" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+  <text x="72" y="202" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="15" font-weight="bold">command</text>
+  <text x="72" y="226" font-family="Consolas, monospace" font-size="12">Command / SnapshotCommand</text>
+  <text x="72" y="246" font-family="Consolas, monospace" font-size="12">CommandHistory</text>
+  <text x="72" y="266" font-family="Consolas, monospace" font-size="12">16 个命令类</text>
+
+  <rect x="252" y="178" width="165" height="116" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+  <text x="266" y="202" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="15" font-weight="bold">io</text>
+  <text x="266" y="226" font-family="Consolas, monospace" font-size="12">SvgReader / SvgWriter</text>
+  <text x="266" y="246" font-family="Consolas, monospace" font-size="12">FileSystemPort</text>
+  <text x="266" y="266" font-family="Consolas, monospace" font-size="12">NodeFileSystem</text>
+
+  <rect x="431" y="178" width="140" height="116" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+  <text x="445" y="202" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="15" font-weight="bold">shapes</text>
+  <text x="445" y="226" font-family="Consolas, monospace" font-size="12">ShapeFactory</text>
+  <text x="445" y="246" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" fill="#555555">按名分派 R2</text>
+
+  <rect x="585" y="178" width="218" height="116" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+  <text x="599" y="202" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="15" font-weight="bold">ports</text>
+  <text x="599" y="226" font-family="Consolas, monospace" font-size="12">SvgReaderPort / SvgWriterPort</text>
+  <text x="599" y="246" font-family="Consolas, monospace" font-size="12">TreeRenderer / ShapeRenderer</text>
+
+  <rect x="40" y="360" width="780" height="88" fill="#f4f6f8" stroke="#333333" stroke-width="1.2"/>
+  <text x="56" y="386" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="bold">domain</text>
+  <text x="56" y="410" font-family="Consolas, monospace" font-size="12.5">Document · SvgRoot · Shape · Group · Rect / Circle / Ellipse / Line / TextShape · IdAllocator</text>
+  <text x="56" y="432" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12.5" fill="#555555">纯内存模型，不读文件，不认识 svg&gt;</text>
+
+  <rect x="40" y="494" width="780" height="46" fill="#f4f6f8" stroke="#333333" stroke-width="1.2"/>
+  <text x="56" y="522" font-family="Consolas, monospace" font-size="12.5">shared：AppError · NumberFormat</text>
+
+  <line x1="430" y1="122" x2="430" y2="158" stroke="#333333" stroke-width="1.4"/>
+  <polygon points="430,160 425,150 435,150" fill="#333333"/>
+  <text x="442" y="146" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" fill="#555555">cli 可以依赖下面所有层</text>
+
+  <line x1="430" y1="310" x2="430" y2="358" stroke="#333333" stroke-width="1.4"/>
+  <polygon points="430,360 425,350 435,350" fill="#333333"/>
+  <text x="442" y="342" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" fill="#555555">command / io / shapes / ports 都只往下依赖</text>
+
+  <line x1="430" y1="448" x2="430" y2="492" stroke="#333333" stroke-width="1.4"/>
+  <polygon points="430,494 425,484 435,484" fill="#333333"/>
+  <text x="442" y="476" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" fill="#555555">所有层都可以用 shared</text>
+</svg>
